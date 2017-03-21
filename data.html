@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+		<title>Federal Budgets</title>
+		<style>
+			.chart div {
+			font: 10px sans-serif;
+			background-color: steelblue;
+			text-align: right;
+			padding: 3px;
+			margin: 1px;
+			color: white;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Comparison of Budget Spending</h1>
+		Percent of budget spent on Dept. of Defense - Military Programs, Social Security Administration, Dept. of the Treasury, 
+		Dept. of Health and Human Services, and Other Departments and Agencies, respectively. These were the top 5 of both years.
+		<h2>1969 Data</h2>
+		<div class="chart" id="dynamic1">
+		</div>
+		
+		<h2>1999 Data</h2>
+		<div class="chart" id="dynamic2">
+		</div>
+		
+		<script>
+		var dyn1 = d3.select("#dynamic1");
+		var dyn2 = d3.select("#dynamic2");
+		var info1 = [41, 14, 8, 8, 5];
+		var info2 = [14, 23, 21, 19, 5];
+		
+		var makeBars = function() {
+			dyn1.selectAll("div")
+				.data(info1)
+				.enter()
+				.append("div")
+				.transition()
+				.duration(2000)
+				.style("width", function(d) {
+					return d + "em";
+				})
+				.text( function(d) {
+					return d + "%";
+				});
+			
+			dyn2.selectAll("div")
+				.data(info2)
+				.enter()
+				.append("div")
+				.transition()
+				.duration(2000)
+				.style("width", function(d) {
+					return d + "em";
+				})
+				.text( function(d) {
+					return d + "%";
+				});
+		};
+		
+		makeBars();
+		</script>
+	</body>
+</html>
